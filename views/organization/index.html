@@ -2,52 +2,66 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Org Sign Up</title>
+    <title>Org. Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
     <div class="org-form">
       <div class="container">
       <form  id=donarform action="donorFormphp.php" method="post">
-          <h3 class="color-b" >Organization Sign Up</h3>
-      <label><b>Name:</b></label>
-    <input type="text"  name="name" required autofocus style="border-radius: 5px;"><br>
-  <br>
-  <label for=""><b>Website:</b></label>
-<input type="text"  name="website" required autofocus style="border-radius: 5px;"><br>
-<br>
-  <Label><b>Phone:</b></label>
-    <input type="tel" name ="phno" pattern="[0-9]{10}" required>
-    <span id="phnov"> enter a 10-digit number</span>
-  <br>
-  <br>
-  <b>Address: </b>
-    <input type="text" id="location-input">
-  <br>
-  <br>
-  <Label><b>E mail:</b></Label>
-    <input type="email" name="mail" id="address"><br>
-    <br>
+          <br><center><h1 class="color-b" >Organization Sign Up</h1></center>
+          <br>
+          <br>
+   <center> <table>
+      <tr>
+      <td> <label><b>Name:</b></label> </td>
+    <td> <input type="text"  name="name" required autofocus ></td>
+</tr>
 
-    <Label><b>Password:</b></Label>
-      <input type="password" name="pass" id="pass"><br>
-      <br>
-  <label for=""><b>No of employees</b></label>
-    <select class="employeeno" name="empno">
+  <tr>
+    <td> <label for=""><b>Website:</b></label> </td>
+ <td><input type="text"  name="website" required autofocus></td>
+
+</tr>
+  <tr>
+    <td> <label><b>Phone:</b> </label></td>
+    <td> <input type="tel" name ="phno" pattern="[0-9]{10}" required placeholder="Enter a 10 digit number"> </td>
+    <span id="phnov"></span>
+  </tr>
+  <tr>
+    <td><b>Address: </b></td>
+    <td> <input type="text" id="location-input"></td>
+</tr>
+  <tr>
+  <td><Label><b>E-mail:</b></Label></td>
+    <td><input type="email" name="mail" id="address"></td>
+  </tr>
+
+    <tr>
+      <td><Label><b>Password:</b></Label></td>
+      <td><input type="password" name="pass" id="pass"></td>
+    </tr>
+  <tr>
+    <td><label for=""><b>No of employees</b></label></td>
+    <td><select class="employeeno" name="empno">
       <option value="">1-10</option>
       <option value="">15-30</option>
       <option value="">30-50</option>
       <option value="">>100</option>
     </select>
-    <br>
+  </td>
+  </tr>
 
+  <tr>
+    <td> </td>
+    <td><br><button type="submit" style= "background-color: #007bff; height:50px;width:150px ;border-radius: 5px;"> <h5>Submit</h5></button></td>
+</tr>
+</table>
+</center>
 <!--<button>submit</button>-->
     <div><input type="hidden" id="latitude" name="latitude"></div>
     <div><input type="hidden" id="longitude" name="longitude"></div>
     <div id="geometry"></div>
-  <button type="submit">submit</button>
-  <br>  <br>
-
   </form>
     </div>
 
