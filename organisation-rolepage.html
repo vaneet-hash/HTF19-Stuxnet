@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Org Dash</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="org-dash">
+      <div class="container align-items-center">
+      <form  id=dash action="organisation-rolepage.php" method="post">
+          <h3 class="color-b">Required details </h3>
+      <table>
+        <tr>          <td>
+            <label><b>Role:</b></label>
+          </td>
+          <td><input type="text"  name="role" required autofocus style="border-radius: 5px;"></td>
+          <br>
+        </tr>
+        <tr>
+          <td>
+            <label for=""><b>Technologies:</b></label>
+          </td>
+          <td>
+            <select class="technologies" name="techno">
+              <option value="IOT" selected>IOT</option>
+              <option value="BLOCKCHAIN">BLockchain</option>
+              <option value="AI">AI</option>
+              <option value="CLOUD">CLoud</option>
+            </select>
+            <br>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for=""><b>Salary Range</b></label>
+          </td>
+          <td>
+            <input type="text"  name="salary" required autofocus style="border-radius: 5px;"><br>
+          </td>
+        </tr>
+      </table>
+
+
+
+<!--<button>submit</button>-->
+  <button type="submit">submit</button>
+  <br>  <br>
+
+  </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

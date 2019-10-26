@@ -1,9 +1,12 @@
-<?php  
+
+<?php
 session_start();
-
-$latitude=" ";
-$longitude=" ";
-
+$latitude=$_SESSION["latitude"];
+$longitude=$_SESSION["longitude"];
+$name=$_SESSION["name"];
+$tech=$_POST["tech"];
+//echo $resu['latitude'];
+//echo $resu['name'];
 $host = 'localhost';  
 $user = 'root';  
 $pass = '';  
@@ -11,31 +14,8 @@ $dbname = 'startup';
 $conn = mysqli_connect($host, $user, $pass,$dbname);  
 if(!$conn){  
   die('Could not connect: '.mysqli_connect_error());  
-}  
-//echo 'Connected successfully<br/>';  
-$username1=$_POST["email"];
-$password1=$_POST["password"]; 
-$sql = "SELECT * FROM student where email='$username1' and password='$password1'";  
-$retval=mysqli_query($conn, $sql);  
-  
-if(mysqli_query($conn, $sql)){ 
-$result=mysqli_fetch_all($retval,MYSQLI_ASSOC);
-
-echo "you are a authorized user";
-foreach ($result as $resu) {
-$_SESSION["latitude"]=$resu["latitude"];
-$_SESSION["longitude"]=$resu["longitude"];
-$_SESSION["name"]=$resu["name"];
-$latitude=$resu["latitude"];
-$longitude=$resu["longitude"];
-$name=$resu["name"];
-
-//echo $resu['latitude'];
-//echo $resu['name'];
- }
-}
-
-$sql2="select * from organisation ";
+  }
+$sql2="select * from organisation where technology='$tech'";
 $res=mysqli_query($conn,$sql2);
 if(mysqli_query($conn, $sql2)){  
  //echo "successfully connected to organisation"; 
@@ -57,19 +37,20 @@ foreach ($result as $resu) {
 	//$ans2=$ans2*6371;
 	//$ans2=var_dump(round($ans2,6));
 	$ans2= round($ans2,6);
-	echo $ans2;
+	//echo $ans2;
 	//echo "<br>";
-
-$sql3="update organisation set distance= {$ans2} where email={$resu['email']}";	
+	$var=mysqli_real_escape_string($conn,$resu['email']);
+$sql3="update organisation set distance=\"{$ans2}\" where email=\"{$var}\"";	
 $res1=mysqli_query($conn,$sql3);
-if(mysqli_query($conn, $sql3)){  
+echo mysqli_error($conn);
+if($res1){  
  //echo "successfully inserted"; 
 	//mysqli_close($conn);
 }
 }
 $sql4="select * from organisation order by -distance DESC";
  $result=mysqli_query($conn,$sql4);
- $donars = mysqli_fetch_all($result, MYSQLI_ASSOC);
+ $org = mysqli_fetch_all($result, MYSQLI_ASSOC);
  mysqli_free_result($result);
 
 $sql5="update organisation set distance=0 ";
@@ -87,27 +68,30 @@ mysqli_close($conn);
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 </head>
 	
-	<body id="particles-js">
+	<body >
 		<div></div>
 		<!--<script src="particles.js"></script>-->
 		 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-	<h4 class="center grey-text">startps near me are</h4>
+	<h4 class="center grey-text">startups near me are</h4>
 
 	<div class="container">
 		<div class="row">
+			
+			<?php echo $org[0]['distance']==0;?>
 
-			<?php foreach($donars as $donar){ ?>
-			<?php if($donar['distance']!=0.000000){ ?>
+			<?php foreach($org as $or){ ?>
+			<?php if($or['distance']!="0"){ ?>
 				<div class="col-sm-3">
 					<div class="card z-depth-0">
 						<div class="card-content center">
-							<form action="result2.php" method="POST" style="width: 100%;">
-							<input type=text class="card-text" name='name' value="<?php echo $donar['name']; ?>" size="70">
-							<input type=text class="card-text" name='ph_no' value="<?php echo $donar['phno']; ?>" size="70">
-							<input type=text  class="card-text"name='email_id' value="<?php echo $donar['mail']; ?>" size="70">
-							<input type=text name='distance' value="<?php echo $donar['distance']; ?>" size="70">
-				
+							<form action="result1.php" method="POST" style="width: 100%;">
+							<input type=text class="card-text" name='name' value="<?php echo $or['name']; ?>" size="70">
+							<input type=text class="card-text" name='ph_no' value="<?php echo $or['phno']; ?>" size="70">
+							<input type=text  class="card-text"name='email_id' value="<?php echo $or['email']; ?>" size="70">
+							<input type=text  class="card-text"name='location' value="<?php echo $or['location']; ?>" size="70">
+							<input type=text  class="card-text"name='technology' value="<?php echo $or['technology']; ?>" size="70">
+							
 							<button type="submit" class="btn btn-primary">contact</button>
 							</form>
 						</div>
