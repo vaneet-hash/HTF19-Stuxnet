@@ -48,7 +48,7 @@ if($res1){
 	//mysqli_close($conn);
 }
 }
-$sql4="select * from organisation order by -distance DESC";
+$sql4="select * from organisation order by distance ";
  $result=mysqli_query($conn,$sql4);
  $org = mysqli_fetch_all($result, MYSQLI_ASSOC);
  mysqli_free_result($result);
@@ -91,6 +91,7 @@ mysqli_close($conn);
 							<input type=text  class="card-text"name='email_id' value="<?php echo $or['email']; ?>" size="70">
 							<input type=text  class="card-text"name='location' value="<?php echo $or['location']; ?>" size="70">
 							<input type=text  class="card-text"name='technology' value="<?php echo $or['technology']; ?>" size="70">
+							<input type=text  class="card-text"name='distance' value="<?php echo $or['distance']; ?>" size="70">
 							
 							<button type="submit" class="btn btn-primary">contact</button>
 							</form>

@@ -14,10 +14,10 @@ session_start();
 $_SESSION['iemail']=$username1;
 $sql = "SELECT * FROM investor where email='$username1' and password='$password1'";  
 $retval=mysqli_query($conn, $sql); 
-  
+
 if(mysqli_num_rows($retval) > 0){  
 echo "you are a authorized user";
-header("location:investor-das.html");
+header("location:invester-das.php");
  
 }
 else{  
